@@ -8,12 +8,14 @@ function PageAdmin() {
         <div className="flex flex-col w-full">
             <div className="flex flex-row justify-center">
                 <Button
+                    className={"uppercase text-lg"}
                     active={menu === "dashboard" ? "true" : "false"}
                     onClick={() => setMenu("dashboard")}
                 >
                     Dashboard
                 </Button>
                 <Button
+                    className={"uppercase text-lg"}
                     active={menu === "users" ? "true" : "false"}
                     onClick={() => setMenu("users")}
                 >
@@ -21,7 +23,9 @@ function PageAdmin() {
                 </Button>
             </div>
             <div className="flex flex-col">
-                {menu === "dashboard" && <div>Dashboard</div>}
+                {menu === "dashboard" && (
+                    <div className="uppercase text-lg">Dashboard</div>
+                )}
                 {menu === "users" && <PageUsers></PageUsers>}
             </div>
         </div>

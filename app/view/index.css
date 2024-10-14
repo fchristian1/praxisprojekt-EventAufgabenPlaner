@@ -4,3 +4,6 @@
 html {
     @apply bg-gray-500;
 }
+body {
+    min-width: 440px;
+}

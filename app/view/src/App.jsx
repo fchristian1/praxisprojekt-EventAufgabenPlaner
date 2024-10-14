@@ -14,22 +14,25 @@ export function App() {
     ];
 
     return (
-        <div className="mx-16">
+        <div className="mx-1 sm:mx-16">
             <div className="flex flex-col items-center mt-4">
                 <div id="nav" className="flex flex-row">
                     <Button
+                        className={"uppercase text-lg"}
                         active={menu === "home" ? "true" : "false"}
                         onClick={() => setMenu("home")}
                     >
                         Home
                     </Button>
                     <Button
+                        className={"uppercase text-lg"}
                         active={menu == "admin" ? "true" : "false"}
                         onClick={() => setMenu("admin")}
                     >
                         Admin
                     </Button>
                     <Button
+                        className={"uppercase text-lg"}
                         active={menu == "login" ? "true" : "false"}
                         onClick={() => setMenu("login")}
                     >

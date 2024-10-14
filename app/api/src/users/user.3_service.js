@@ -47,6 +47,8 @@ export class UserService {
                 email: "admin@localhost",
                 dateCreated: date,
                 passwordHash: createPasswordHash("admin", date),
+                isActive: true,
+                isAdmin: true,
                 token: "",
             };
             console.log(
@@ -81,18 +83,38 @@ const checkPasswords = (password, passwordHash, secret) => {
     return createPasswordHash(password, secret) === passwordHash;
 };
 
-const DTOCreateUserToDBUser = ({ email, passwordHash, dateCreated, token }) => {
+const DTOCreateUserToDBUser = ({
+    email,
+    passwordHash,
+    dateCreated,
+    isActive,
+    isAdmin,
+    token,
+}) => {
     return {
         id: crypto.randomUUID(),
         email,
         passwordHash,
         dateCreated,
+        isActive,
+        isAdmin,
         token,
     };
 };
-const DTOUserFromDBToUser = ({ id, email }) => {
+const DTOUserFromDBToUser = ({
+    id,
+    email,
+    dateCreated,
+    isActive,
+    isAdmin,
+    token,
+}) => {
     return {
         id,
         email,
+        dateCreated,
+        isActive,
+        isAdmin,
+        token,
     };
 };
