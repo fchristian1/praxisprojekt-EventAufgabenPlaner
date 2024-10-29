@@ -12,6 +12,8 @@ function CalendarOwn({
     setSelectedEvent,
     selectedTime,
     setSelectedTime,
+    viewMonthInCalendar,
+    setViewMonthInCalendar,
 }) {
     const [date, setDate] = React.useState(new Date());
     const [day, setDay] = React.useState(new Date().getDay());
@@ -154,13 +156,14 @@ function CalendarOwn({
                     </Button>
                 )}
             </div> */}
-            <div className="w-full flex-col flex md:gap-2 bg-[#fafafa]">
+            <div className="w-full flex-col flex md:gap-2 bg-[#fafafa] dark:bg-[#303030]">
                 <div className="flex justify-between">
                     <div className="whitespace-nowrap">
                         <Button
                             className={"rounded-e-[0]"}
                             onClick={() => {
                                 setDate(new Date(date.setMonth(date.getMonth() - 1)));
+                                setViewMonthInCalendar([String(date.getMonth()).padStart(2, "0"), date.getFullYear()].join(""));
                                 setSelectedDate(new Date(date.setMonth(date.getMonth() - 1)).setHours(0, 0, 0, 0));
                             }}
                         >
@@ -170,6 +173,7 @@ function CalendarOwn({
                             className={"rounded-s-[0] rounded-e-[0]"}
                             onClick={() => {
                                 setDate(new Date(date.setMonth(date.getMonth() + 1)));
+                                setViewMonthInCalendar([String(date.getMonth()).padStart(2, "0"), date.getFullYear()].join(""));
                                 setSelectedDate(new Date(date.setMonth(date.getMonth() + 1)).setHours(0, 0, 0, 0));
                             }}
                         >
@@ -247,20 +251,20 @@ function CalendarOwn({
                     }}
                     className="grid grid-cols-8 border border-gray-500 rounded"
                 >
-                    <div className=" select-none border border-gray-500 w-full justify-center flex">KW</div>
-                    <div className=" select-none border border-gray-500 w-full justify-center flex">Mo</div>
-                    <div className=" select-none border border-gray-500 w-full justify-center flex">Di</div>
-                    <div className=" select-none border border-gray-500 w-full justify-center flex">Mi</div>
-                    <div className=" select-none border border-gray-500 w-full justify-center flex">Do</div>
-                    <div className=" select-none border border-gray-500 w-full justify-center flex">Fr</div>
-                    <div className=" select-none border border-gray-500 w-full justify-center flex">Sa</div>
-                    <div className=" select-none border border-gray-500 w-full justify-center flex">So</div>
+                    <div className=" select-none border border-gray-500 w-full justify-center flex text-gray-700 dark:text-gray-300">KW</div>
+                    <div className=" select-none border border-gray-500 w-full justify-center flex text-gray-700 dark:text-gray-300">Mo</div>
+                    <div className=" select-none border border-gray-500 w-full justify-center flex text-gray-700 dark:text-gray-300">Di</div>
+                    <div className=" select-none border border-gray-500 w-full justify-center flex text-gray-700 dark:text-gray-300">Mi</div>
+                    <div className=" select-none border border-gray-500 w-full justify-center flex text-gray-700 dark:text-gray-300">Do</div>
+                    <div className=" select-none border border-gray-500 w-full justify-center flex text-gray-700 dark:text-gray-300">Fr</div>
+                    <div className=" select-none border border-gray-500 w-full justify-center flex text-gray-700 dark:text-gray-300">Sa</div>
+                    <div className=" select-none border border-gray-500 w-full justify-center flex text-gray-700 dark:text-gray-300">So</div>
 
                     {calBoxes.map((calBox, index) => {
                         return index % 8 == 0 ? (
                             <div
                                 key={index}
-                                className="flex items-center justify-center border border-gray-500 w-full max-h-[42px] h-full select-none aspect-square text-gray-500 text-sm  "
+                                className="flex items-center justify-center border border-gray-500 w-full max-h-[42px] h-full select-none aspect-square text-gray-600 dark:text-gray-400 text-sm  "
                             >
                                 {calBox.text}
                             </div>
@@ -276,12 +280,13 @@ function CalendarOwn({
                                 }}
                                 key={index}
                                 className={
-                                    " flex flex-col justify-between select-none cursor-pointer border border-gray-500 max-h-[42px]" +
-                                    (calBox.active == false ? " text-gray-400 " : "") +
-                                    (calBox.active2 == true ? " bg-orange-300 " : "")
+                                    " flex flex-col justify-between select-none cursor-pointer border border-gray-500 max-h-[42px] " +
+                                    (calBox.active == true ? " text-gray-700 dark:text-gray-300 " : " ") +
+                                    (calBox.active == false ? " text-gray-300 dark:text-gray-700 " : " ") +
+                                    (calBox.active2 == true ? " bg-orange-300 dark:bg-orange-700 " : " ")
                                 }
                             >
-                                {calBox.today && <div className="bg-blue-600 rounded-full w-6 h-6 text-center">{calBox.text}</div>}
+                                {calBox.today && <div className="bg-blue-600 dark:bg-blue-400 rounded-full w-6 h-6 text-center">{calBox.text}</div>}
                                 {!calBox.today && <div>{calBox.text}</div>}
                                 <div className="h-[1.5rem] flex">
                                     {calBox.events.map((event, index) => {

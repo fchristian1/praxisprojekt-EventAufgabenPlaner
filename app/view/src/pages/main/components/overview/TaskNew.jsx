@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../../../components/Button";
 import { apiCreateTask } from "../../../../service/api_calls";
+import Input from "../../../../components/Input";
 
 function TaskNew({
     saveTask,
@@ -30,9 +31,7 @@ function TaskNew({
 
     return (
         <>
-            <div className="flex flex-col space-y-4">
-                <h1 className="text-2xl font-semibold">Neue Aufgabe hinzufügen</h1>
-
+            <div className="flex flex-col space-y-4 text-gray-700 dark:text-gray-300">
                 <select
                     id="event-select"
                     name="id_event"
@@ -40,7 +39,7 @@ function TaskNew({
                     onChange={(e) => {
                         setTask({ ...task, id_event: e.target.value });
                     }}
-                    className="p-2 border rounded"
+                    className="p-2 border rounded text-gray-300 dark:text-gray-700"
                 >
                     {events.map((event) => {
                         return (
@@ -51,7 +50,7 @@ function TaskNew({
                     })}
                 </select>
 
-                <input
+                <Input
                     type="text"
                     name="title"
                     value={task.title}

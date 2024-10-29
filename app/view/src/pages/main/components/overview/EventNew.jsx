@@ -35,7 +35,7 @@ function EventNew({
     }, [selectedDate]);
     return (
         <>
-            <div className="flex flex-col gap-1 p-2 border border-gray-300 rounded-lg shadow-lg">
+            <div className="flex flex-col gap-1 p-2 border border-gray-300 rounded-lg shadow-lg text-gray-700 dark:text-gray-300">
                 <div>Title</div>
                 <Input
                     type="text"
@@ -49,7 +49,7 @@ function EventNew({
                 />
                 <div className="flex items-center gap-2">
                     <div className="">Datum</div>
-                    <div>{formatDate(event.start)}</div>
+                    <div className="text-gray-600 dark:text-gray-400">{formatDate(event.start)}</div>
                     <div>Uhrzeit</div>
                     <TimeViewSelector getTime={{ hour: null, minute: null }} selectedTime={selectedTime} setSelectedTime={setSelectedTime}></TimeViewSelector>
                 </div>

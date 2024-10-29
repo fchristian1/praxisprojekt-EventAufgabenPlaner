@@ -12,7 +12,7 @@ function ColorPicker({ color, setColor }) {
                     setShowPicker(!showPicker);
                 }}
                 style={{ backgroundColor: selectedColor }}
-                className="px-2 py-1 rounded  hover:border-black border hover:dark:bg-white"
+                className="px-2 py-1 rounded  hover:border-black border hover:dark:bg-white text-black"
             >
                 Farbe auswählen
             </button>

@@ -34,12 +34,12 @@ function EventDetail({
     return (
         <>
             <div className="flex flex-col gap-1 p-2 border border-gray-300 rounded-lg shadow-lg">
-                <div>Title</div>
+                <div className="text-gray-700 dark:text-gray-300">Title</div>
                 <Input type="text" name="title" value={event.title} onChange={(e) => setEvent({ ...event, title: e.target.value })} placeholder="Event Titel" />
                 <div className="flex flex-row items-center gap-2">
-                    <div>Datum</div>
-                    <div>{formatDate(event.start)}</div>
-                    <div>Uhrzeit</div>
+                    <div className="text-gray-700 dark:text-gray-300">Datum</div>
+                    <div className="text-gray-600 dark:text-gray-400">{formatDate(event.start)}</div>
+                    <div className="text-gray-700 dark:text-gray-300">Uhrzeit</div>
                     <TimeViewSelector
                         getTime={event.startTime ?? { hour: 12, minute: 0 }}
                         selectedTime={selectedTime}
@@ -49,7 +49,7 @@ function EventDetail({
                 <div>
                     <ColorPicker color={color} setColor={setColor}></ColorPicker>
                 </div>
-                <div>Aufgaben</div>
+                <div className="text-gray-700 dark:text-gray-300">Aufgaben</div>
                 {/* <p className="mt-3">Event Ende (Angabe nur notwendig, wenn das Event mehrtägig ist)</p>
                 <input
                     type="text"
@@ -58,7 +58,7 @@ function EventDetail({
                     onChange={(e) => setEvent({ ...event, endDate: e.target.value })}
                     className="p-2 border rounded resize-none w-1/2 text-gray-500"
                 /> */}
-                <div className="mt-3">Details zu deinem Event</div>
+                <div className="mt-3 text-gray-700 dark:text-gray-300">Details zu deinem Event</div>
                 <textarea
                     name="description"
                     value={event.description}
@@ -98,14 +98,14 @@ function EventDetail({
                     )}
                     {deleteEventMenu && (
                         <div className="flex w-full justify-between px-1">
-                            <Button
-                                className=" bg-green-500 hover:bg-green-600 dark:bg-green-500 dark:hover:bg-green-600"
+                            <button
+                                className="px-3 bg-green-500 hover:bg-green-600 dark:bg-green-500 dark:hover:bg-green-600 rounded-md"
                                 onClick={() => setDeleteEventMenu(false)}
                             >
                                 Nein
-                            </Button>
-                            <Button
-                                className="px-5 bg-red-500 hover:bg-red-600  dark:bg-red-500 dark:hover:bg-red-600"
+                            </button>
+                            <button
+                                className="px-5 bg-red-500 hover:bg-red-600  dark:bg-red-500 dark:hover:bg-red-600 rounded-md"
                                 onClick={() => {
                                     apiDeleteEvent(event.id);
                                     setUpdate(!update);
@@ -114,7 +114,7 @@ function EventDetail({
                                 }}
                             >
                                 Ja
-                            </Button>
+                            </button>
                         </div>
                     )}
                     <Button

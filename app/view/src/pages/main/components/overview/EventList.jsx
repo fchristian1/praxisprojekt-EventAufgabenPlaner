@@ -25,6 +25,7 @@ function EventList({
     updateTask,
     setUpdateTask,
     switchContent,
+    viewMonthInCalendar,
 }) {
     const scrollContainer = useRef(null);
     const scrollContainerInner = useRef(null);
@@ -61,27 +62,54 @@ function EventList({
     }, [setTop]);
 
     useEffect(() => {
-        if (selectedEvent && scrollContainer) {
-            const element = document.getElementById(selectedEvent?.id);
-            if (element) {
-                const elementPosition = element.offsetTop - scrollContainer.current.offsetTop;
-                scrollContainer.current.scrollTo({ top: 0, behavior: "smooth" });
-                element.scrollIntoView({ behavior: "smooth", block: "center" });
-                console.log("scroll to", elementPosition);
-            }
-        }
+        // if (selectedEvent && scrollContainer) {
+        //     const element = document.getElementById(selectedEvent?.id);
+        //     if (element) {
+        //         console.log("scroll to", element.offsetTop);
+        //         const scrollContainerHightDiv2 = scrollContainer.current.getBoundingClientRect().height / 2;
+        //         const elementHightDiv2 = element.getBoundingClientRect().height / 2;
+        //         const elementPosition = element.offsetTop - scrollContainerHightDiv2 + elementHightDiv2;
+        //         scrollContainer.current.scrollTo({ top: elementPosition, behavior: "smooth" });
+        //     }
+        // }
     }, [selectedEvent]);
     useEffect(() => {
         if (selectedDate) {
             const element = document.getElementById(
                 [String(new Date(parseInt(selectedDate ?? null)).getMonth()).padStart(2, "0"), new Date(parseInt(selectedDate)).getFullYear()].join("")
             );
+            const elements = document.getElementsByClassName("monthli");
             if (element) {
-                const elementPosition = element.offsetTop - scrollContainer.current.offsetTop;
-                scrollContainer.current.scrollTo({ top: elementPosition - 40, behavior: "smooth" });
+                //element first in elements
+                const elementFirstInElements = elements[0] == element;
+                if (elementFirstInElements) {
+                    scrollContainer.current.scrollTo({ top: 0, behavior: "smooth" });
+                    return;
+                }
+                const scrollContainerTop = scrollContainer.current.getBoundingClientRect().top;
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+                console.log(element.innerText);
             }
         }
     }, [selectedDate]);
+    useEffect(() => {
+        console.log(viewMonthInCalendar);
+        if (viewMonthInCalendar) {
+            const element = document.getElementById(viewMonthInCalendar);
+            const elements = document.getElementsByClassName("monthli");
+            if (element) {
+                //element first in elements
+                const elementFirstInElements = elements[0] == element;
+                if (elementFirstInElements) {
+                    scrollContainer.current.scrollTo({ top: 0, behavior: "smooth" });
+                    return;
+                }
+                const scrollContainerTop = scrollContainer.current.getBoundingClientRect().top;
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+                console.log(element.innerText);
+            }
+        }
+    }, [viewMonthInCalendar]);
 
     return (
         <div ref={scrollContainer} className="overflow-y-scroll">
@@ -98,7 +126,7 @@ function EventList({
                                 id={[String(new Date(parseInt(event.start)).getMonth()).padStart(2, "0"), new Date(parseInt(event.start)).getFullYear()].join(
                                     ""
                                 )}
-                                className="text-xl font-semibold sticky top-0 bg-[#d0cbbb] p-1 rounded-b z-20 shadow shadow-gray-300"
+                                className="text-xl text-black dark:text-white font-semibold sticky top-0 bg-[#d0cbbb] dark:bg-[#716a53] p-1 rounded-b z-20 shadow shadow-gray-300 dark:shadow-gray-700 monthli"
                             >
                                 {new Date(parseInt(event.start)).toLocaleString("de", { month: "long", year: "numeric" })}
                             </li>
@@ -108,16 +136,17 @@ function EventList({
                             onClick={() => {
                                 handleEventClick({ event });
                             }}
-                            className="flex w-full top-0 md:p-1 border bg-white border-gray-300 rounded-lg shadow shadow-gray-300 z-10 "
+                            className="flex w-full top-0 md:p-1 border  border-gray-300 dark:border-gray-500 rounded-lg shadow shadow-gray-300 dark:shadow-gray-700 z-10 "
                         >
                             <div
                                 className={
-                                    "w-full border-2 hover:border-gray-700 rounded-s " +
-                                    (event.id === selectedEvent?.id && " border-orange-500 hover:border-orange-700")
+                                    "w-full border-2 dark:border-gray-700 hover:border-gray-300 rounded-s " +
+                                    (event.id === selectedEvent?.id &&
+                                        " border-orange-500 hover:border-orange-700 dark:border-orange-500 dark:hover:border-orange-700")
                                 }
                             >
                                 <div className="flex justify-between px-2 rounded">
-                                    <span className="font-semibold text-lg cursor-pointer" title={event.description}>
+                                    <span className="font-semibold text-lg cursor-pointer text-gray-700 dark:text-gray-300 " title={event.description}>
                                         {event.title}
                                     </span>
                                 </div>

@@ -28,7 +28,7 @@ function PageMain({ setTop }) {
     const [eventTaskShow, setEventTaskShow] = useState([]);
     const [selectedTasks, setSelectedTasks] = useState([]);
     const [activeContent, setActiveContent] = useState("EventOverview");
-
+    const [viewMonthInCalendar, setViewMonthInCalendar] = useState([String(new Date().getMonth()).padStart(2, "0"), new Date().getFullYear()].join(""));
     const [errorMessage, setErrorMessage] = useState("");
 
     const containerRef = useRef(null);
@@ -302,7 +302,7 @@ function PageMain({ setTop }) {
     return (
         <>
             <div className="flex flex-col min-[880px]:flex-row items-center min-[880px]:items-start w-full  min-[880px]:gap-5">
-                <div className="w-full min-[880px]:w-1/2 min-w-96 border border-gray-300 md:p-2 min-[880px]:p-4 rounded-lg shadow-lg bg-[#fafafa]">
+                <div className="w-full min-[880px]:w-1/2 min-w-96 border border-gray-300 md:p-2 min-[880px]:p-4 rounded-lg shadow-lg ">
                     <CalendarOwn
                         testPercentage={testpercentage}
                         setTestPercentage={setTestPercentage}
@@ -313,6 +313,8 @@ function PageMain({ setTop }) {
                         setSelectedEvent={setSelectedEvent}
                         selectedTime={selectedTime}
                         setSelectedTime={setSelectedTime}
+                        viewMonthInCalendar={viewMonthInCalendar}
+                        setViewMonthInCalendar={setViewMonthInCalendar}
                     ></CalendarOwn>
                     {/* <Calendar
                         key={JSON.stringify(events)} // Neurendering bei Änderung
@@ -326,7 +328,7 @@ function PageMain({ setTop }) {
 
                 <div
                     ref={containerRef}
-                    className="bottom-0 w-full min-[880px]:w-1/2  min-w-96 border border-gray-300 md:p-2 min-[880px]:p-4 rounded-lg shadow-lg bg-[#fafafa]"
+                    className="bottom-0 w-full min-[880px]:w-1/2  min-w-96 border border-gray-300 md:p-2 min-[880px]:p-4 rounded-lg shadow-lg bg-[#fafafa] dark:bg-[#303030]"
                 >
                     <div className="lg:text-base flex gap-2 w-full justify-between md:mb-2">
                         <Button
@@ -515,6 +517,8 @@ function PageMain({ setTop }) {
                             updateTask={updateTask}
                             setUpdateTask={setUpdateTask}
                             switchContent={switchContent}
+                            viewMonthInCalendar={viewMonthInCalendar}
+                            setViewMonthInCalendar={setViewMonthInCalendar}
                         ></EventList>
                     )}
                 </div>

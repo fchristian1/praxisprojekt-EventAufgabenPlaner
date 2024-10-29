@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../../../components/Button";
 import { apiDeleteTask, apiUpdateTask } from "../../../../service/api_calls";
+import Input from "../../../../components/Input";
 
 function TaskDetail({
     handleInputChange,
@@ -22,10 +23,11 @@ function TaskDetail({
     const [deleteTaskMenu, setDeleteTaskMenu] = useState(false);
     return (
         <>
-            <div className="flex flex-col md:gap-2">
+            <div className="flex flex-col md:gap-2 text-gray-700 dark:text-gray-300">
                 <div className="font-bold">Event auswahl</div>
                 <select
                     name="id_event"
+                    className="text-gray-300 dark:text-gray-700"
                     value={task.id_event}
                     onChange={(e) => {
                         setTask(tasks.filter((t) => t.id == e.target.value));
@@ -40,7 +42,7 @@ function TaskDetail({
                     })}
                 </select>
                 <div className="font-bold">Title</div>
-                <input
+                <Input
                     type="text"
                     name="title"
                     value={task.title}
@@ -133,14 +135,14 @@ function TaskDetail({
                         )}
                         {deleteTaskMenu && (
                             <div className="flex w-full justify-between px-1">
-                                <Button
-                                    className=" bg-green-500 hover:bg-green-600 dark:bg-green-500 dark:hover:bg-green-600"
+                                <button
+                                    className="px-3 bg-green-500 hover:bg-green-600 dark:bg-green-500 dark:hover:bg-green-600 rounded-md"
                                     onClick={() => setDeleteTaskMenu(false)}
                                 >
                                     Nein
-                                </Button>
-                                <Button
-                                    className="px-5  bg-red-500 hover:bg-red-600  dark:bg-red-500 dark:hover:bg-red-600"
+                                </button>
+                                <button
+                                    className=" px-5 bg-red-500 hover:bg-red-600  dark:bg-red-500 dark:hover:bg-red-600 rounded-md"
                                     onClick={async () => {
                                         await apiDeleteTask(task.id);
                                         setUpdate(!update);
@@ -149,7 +151,7 @@ function TaskDetail({
                                     }}
                                 >
                                     Ja
-                                </Button>
+                                </button>
                             </div>
                         )}
                         <Button
