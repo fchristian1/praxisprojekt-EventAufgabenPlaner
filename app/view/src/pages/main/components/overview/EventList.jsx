@@ -221,15 +221,15 @@ function EventList({
                                         {tasks
                                             .filter((t) => t.id_event === event.id)
                                             .map((t, i) => (
-                                                <div className="flex justify-between items-center" key={t.id}>
+                                                <div className="flex justify-between items-center text-gray-700 dark:text-gray-300" key={t.id}>
                                                     <div
                                                         onClick={(e) => {
                                                             e.stopPropagation();
                                                             toggleTaskSelection(t);
                                                         }}
                                                         className={
-                                                            " w-full cursor-pointer hover:bg-orange-600 hover:text-white " +
-                                                            (isTaskSelected(t) ? " bg-orange-500 text-white " : " ") +
+                                                            " w-full cursor-pointer hover:bg-orange-600 hover:text-white  " +
+                                                            (isTaskSelected(t) ? " bg-orange-500 text-white" : " ") +
                                                             (i + 1 === tasks.filter((t) => t.id_event === event.id).length ? " rounded-b-sm " : " ")
                                                         }
                                                     >
