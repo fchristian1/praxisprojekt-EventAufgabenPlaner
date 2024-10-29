@@ -15,9 +15,9 @@ import { AuthRouter } from "./auth/auth.1_router.js";
 import { AuthController } from "./auth/auth.2_controller.js";
 
 const dbServiceSQLite3 = new DBServiceSqlite3("./data/db.sqlite3");
-
 const dbService = new DBService(dbServiceSQLite3);
 await dbService.init();
+
 const userService = new UserService(dbService);
 const usersController = new UserController(userService);
 const userRouter = new UserRouter(usersController, userService);
@@ -34,6 +34,7 @@ const authController = new AuthController(userService);
 const authRouter = new AuthRouter(authController);
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
@@ -41,6 +42,7 @@ app.use("/api/v1/events", eventRouter);
 app.use("/api/v1/tasks", taskRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
+
 app.get("/api/ping", (req, res) => {
     res.send(Date.now().toString());
 });

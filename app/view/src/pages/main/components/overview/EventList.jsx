@@ -65,8 +65,9 @@ function EventList({
             const element = document.getElementById(selectedEvent?.id);
             if (element) {
                 const elementPosition = element.offsetTop - scrollContainer.current.offsetTop;
+                scrollContainer.current.scrollTo({ top: 0, behavior: "smooth" });
                 element.scrollIntoView({ behavior: "smooth", block: "center" });
-                // scrollContainer.current.scrollTo({ top: elementPosition - 40, behavior: "smooth", block: "start" });
+                console.log("scroll to", elementPosition);
             }
         }
     }, [selectedEvent]);
@@ -107,7 +108,7 @@ function EventList({
                             onClick={() => {
                                 handleEventClick({ event });
                             }}
-                            className="flex w-full sticky top-0 md:p-1 border bg-white border-gray-300 rounded-lg shadow shadow-gray-300 z-10 "
+                            className="flex w-full top-0 md:p-1 border bg-white border-gray-300 rounded-lg shadow shadow-gray-300 z-10 "
                         >
                             <div
                                 className={

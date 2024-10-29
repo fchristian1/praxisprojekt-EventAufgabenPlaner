@@ -1,0 +1,25 @@
+services:
+  api:
+    build:
+      context: https://github.com/fchristian1/praxisprojekt-EventAufgabenPlaner.git
+      dockerfile: praxisprojekt-EventAufgabenPlaner/app/api/Dockerfile
+    container_name: api_service
+
+    ports:
+      - "3000:3000"
+
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    
+  view:
+    build:
+      context: https://github.com/fchristian1/praxisprojekt-EventAufgabenPlaner.git
+      dockerfile: praxisprojekt-EventAufgabenPlaner/app/view/Dockerfile
+    container_name: view_service
+    ports:
+      - "8080:80"
+
+    environment:
+      - NODE_ENV=production
+      
