@@ -4,7 +4,7 @@ services:
       context: ./api/
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "4003:3000"
     restart: always
 
     environment:
@@ -18,7 +18,7 @@ services:
       context: ./view/
       dockerfile: Dockerfile
     ports:
-      - "8080:80"
+      - "4002:80"
 
     environment:
       - NODE_ENV=production
