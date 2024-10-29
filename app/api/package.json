@@ -11,8 +11,7 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "sqlite3": "^5.1.7",
