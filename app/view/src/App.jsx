@@ -50,7 +50,7 @@ export function App() {
         !isLoggedIn_AuthService && setMenu("start");
     }, [isLoggedIn_AuthService]);
     return (
-        <div className="md:m-1 md:mx-16 dark:text-[#0b0a22]">
+        <div className="md:m-1 md:mx-16 dark:text-[#0b0a22] h-full">
             <div id="top"></div>
             <div className="flex justify-between md:mb-2">
                 <div className="">
@@ -76,8 +76,8 @@ export function App() {
                 </div>
             </div>
 
-            <div className="flex flex-col items-center bg-[#fafafa]">
-                <div id="main" className="w-full flex flex-col items-center bg-[#fafafa]">
+            <div className="flex flex-col items-center bg-[#fafafa] h-full">
+                <div id="main" className="w-full flex flex-col items-center bg-[#fafafa] h-full">
                     {menu == "start" && (
                         <StartPage
                             setMenu={setMenu}
