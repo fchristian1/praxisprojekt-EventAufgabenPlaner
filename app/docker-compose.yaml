@@ -6,12 +6,12 @@ services:
     ports:
       - "4003:3000"
     restart: always
-
+    volumes:
+      - ${HOME}/docker/docker-compose/data/:/app/api/data/  
     environment:
       - NODE_ENV=production
       - PORT=3000
-    volumes:
-      - mydata:/app/api/data/
+
     
   view:
     build:
@@ -22,6 +22,3 @@ services:
 
     environment:
       - NODE_ENV=production
-  volumes:
-    mydata:
-      external: true
