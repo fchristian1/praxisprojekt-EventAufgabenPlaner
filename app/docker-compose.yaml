@@ -11,7 +11,7 @@ services:
       - NODE_ENV=production
       - PORT=3000
     volumes:
-      - ./app/api/data:/$HOME/docker/docker-compose/data/
+      - ./app/api/data:$HOME/docker/docker-compose/data/
     
   view:
     build:
