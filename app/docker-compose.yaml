@@ -11,7 +11,7 @@ services:
       - NODE_ENV=production
       - PORT=3000
     volumes:
-      - myData:/app/api/data/
+      - mydata:/app/api/data/
     
   view:
     build:
@@ -23,5 +23,5 @@ services:
     environment:
       - NODE_ENV=production
   volumes:
-    myData:
+    mydata:
       external: true
