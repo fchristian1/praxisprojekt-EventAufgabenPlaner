@@ -50,9 +50,9 @@ export function App() {
         !isLoggedIn_AuthService && setMenu("start");
     }, [isLoggedIn_AuthService]);
     return (
-        <div className="md:m-1 md:mx-16 dark:text-[#0b0a22] h-full ">
-            <div id="top"></div>
-            <div className="flex justify-between md:mb-2">
+        <div className="dark:text-[#0b0a22] h-full lg:w-[1024px]">
+            <div id="top w-full"></div>
+            <div className="flex justify-between md:mb-2 w-full">
                 <div className="">
                     <ButtonFingerprint
                         onClick={() => {
@@ -76,7 +76,7 @@ export function App() {
                 </div>
             </div>
 
-            <div className="flex flex-col items-center h-full">
+            <div className="flex flex-col items-center h-full w-full">
                 <div id="main" className="w-full flex flex-col items-center  h-full">
                     {menu == "start" && (
                         <StartPage
@@ -138,7 +138,7 @@ export function App() {
                     {isLoggedIn_AuthService && fingerMenu == "usermenu" && menu === "profile" && <ProfilePage setMenu={setMenu}></ProfilePage>}
                 </div>
             </div>
-            <div className="fixed bottom-[-8px] right-[-8px] z-50">
+            <div className="fixed bottom-[-8px] right-[-8px] z-50 w-full">
                 <ButtonTop
                     onClick={() => {
                         const element = document.getElementById("top");
