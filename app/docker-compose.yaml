@@ -7,7 +7,7 @@ services:
       - "4003:3000"
     restart: always
     volumes:
-      - ${HOME}/docker/docker-compose/data/:/app/api/data/  
+      - ${HOME}/docker/docker-compose/data/:/app/data/  
     environment:
       - NODE_ENV=production
       - PORT=3000
