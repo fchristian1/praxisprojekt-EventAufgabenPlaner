@@ -47,7 +47,7 @@ function PageMain({ setTop }) {
     };
 
     useLayoutEffect(() => {
-        setTimeout(() => positionBoxAtBottom(), 10);
+        setInterval(() => positionBoxAtBottom(), 1000);
         window.addEventListener("resize", positionBoxAtBottom);
         return () => {
             window.removeEventListener("resize", positionBoxAtBottom);
