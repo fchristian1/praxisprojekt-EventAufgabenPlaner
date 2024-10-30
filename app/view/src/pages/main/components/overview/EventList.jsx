@@ -74,26 +74,25 @@ function EventList({
         // }
     }, [selectedEvent]);
     useEffect(() => {
-        if (selectedDate) {
-            const element = document.getElementById(
-                [String(new Date(parseInt(selectedDate ?? null)).getMonth()).padStart(2, "0"), new Date(parseInt(selectedDate)).getFullYear()].join("")
-            );
-            const elements = document.getElementsByClassName("monthli");
-            if (element) {
-                //element first in elements
-                const elementFirstInElements = elements[0] == element;
-                if (elementFirstInElements) {
-                    scrollContainer.current.scrollTo({ top: 0, behavior: "smooth" });
-                    return;
-                }
-                const scrollContainerTop = scrollContainer.current.getBoundingClientRect().top;
-                element.scrollIntoView({ behavior: "smooth", block: "start" });
-                console.log(element.innerText);
-            }
-        }
+        // if (selectedDate) {
+        //     const element = document.getElementById(
+        //         [String(new Date(parseInt(selectedDate ?? null)).getMonth()).padStart(2, "0"), new Date(parseInt(selectedDate)).getFullYear()].join("")
+        //     );
+        //     const elements = document.getElementsByClassName("monthli");
+        //     if (element) {
+        //         //element first in elements
+        //         const elementFirstInElements = elements[0] == element;
+        //         if (elementFirstInElements) {
+        //             scrollContainer.current.scrollTo({ top: 0, behavior: "smooth" });
+        //             return;
+        //         }
+        //         const scrollContainerTop = scrollContainer.current.getBoundingClientRect().top;
+        //         element.scrollIntoView({ behavior: "smooth", block: "start" });
+        //         console.log(element.innerText);
+        //     }
+        // }
     }, [selectedDate]);
     useEffect(() => {
-        console.log(viewMonthInCalendar);
         if (viewMonthInCalendar) {
             const element = document.getElementById(viewMonthInCalendar);
             const elements = document.getElementsByClassName("monthli");
