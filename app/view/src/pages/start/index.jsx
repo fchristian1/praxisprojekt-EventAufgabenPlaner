@@ -13,7 +13,7 @@ const StartPage = ({ onLoginClick, onClickStart }) => {
     return (
         <div className="container flex flex-col  items-center justify-center space-y-4 p-4 max-w-6xl mx-auto">
             <img src="/img.png" alt="Logo Elvito" className="w-80 h-80 object-cover rounded-full mb-4" />
-            <h1 className="text-2xl font-bold">Für deine Planung!</h1>
+            <h1 className="text-2xl font-bold text-black dark:text-white">Für deine Planung!</h1>
             <div className="flex w-full justify-center">
                 {!isLoggedIn_AuthService && (
                     <Button className="w-1/4 mx-3 " onClick={onLoginClick}>
