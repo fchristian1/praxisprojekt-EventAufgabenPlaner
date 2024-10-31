@@ -46,8 +46,8 @@ app.use("/api/v1/auth", authRouter);
 app.get("/api/ping", (req, res) => {
     res.send(Date.now().toString());
 });
-app.post("/", (req, res) => {
-    res.send("Hello World");
+app.post("/api/v1", (req, res) => {
+    res.send("Hello World, from Evito API v1");
 });
 
 app.listen(3000, () => {
