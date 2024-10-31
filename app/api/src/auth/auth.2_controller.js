@@ -88,13 +88,13 @@ export class AuthController {
     async deleteUserByTokenController(req, res) {
         try {
             const { token } = req.params;
-            const users = await this.userService.getAll();
-            const userToDelete = users.find((user) => user.token === token);
-            if (!userToDelete) {
+            const user = await this.userService.getUserByToken(token);
+            if (!user) {
                 res.status(401).json({ delete: false });
                 return;
             }
-            let { delete: deleted, _ } = await this.userService.delete(userToDelete.id);
+
+            let { delete: deleted, _ } = await this.userService.delete(user.id);
             if (!deleted) {
                 res.status(401).json({ delete: false });
                 return;
