@@ -1,6 +1,10 @@
 export const authTokenMiddleware = (userService) => async (req, res, next) => {
     //here coms a string with Bearer and the token so we split it and take only the token
-    const token = req.header("Authorization").split(" ")[1];
+    const authHeader = req.header("Authorization");
+    if (!authHeader) {
+        return res.status(401).send({ error: "No token provided" });
+    }
+    const token = authHeader.split(" ")[1];
     if (!token) {
         return res.status(401).send({ error: "No token provided" });
     }
@@ -16,7 +20,11 @@ export const authTokenMiddleware = (userService) => async (req, res, next) => {
 
 export const authTokenIsAdminMiddleware = (userService) => async (req, res, next) => {
     //here coms a string with Bearer and the token so we split it and take only the token
-    const token = req.header("Authorization").split(" ")[1];
+    const authHeader = req.header("Authorization");
+    if (!authHeader) {
+        return res.status(401).send({ error: "No token provided" });
+    }
+    const token = authHeader.split(" ")[1];
     if (!token) {
         return res.status(401).send({ error: "No token provided" });
     }
