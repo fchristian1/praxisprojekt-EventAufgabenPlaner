@@ -5,6 +5,7 @@ export class AuthController {
         this.logoutController = this.logoutController.bind(this);
         this.registerController = this.registerController.bind(this);
         this.userByTokenController = this.userByTokenController.bind(this);
+        this.deleteUserByTokenController = this.deleteUserByTokenController.bind(this);
     }
     async loginController(req, res) {
         try {
@@ -80,6 +81,29 @@ export class AuthController {
             console.error(err);
             res.status(500).json({
                 error: "Internal Server Error - 04526c30-28fa-40da-93d3-cc01787c9f12",
+            });
+        }
+    }
+
+    async deleteUserByTokenController(req, res) {
+        try {
+            const { token } = req.params;
+            const users = await this.userService.getAll();
+            const userToDelete = users.find((user) => user.token === token);
+            if (!userToDelete) {
+                res.status(401).json({ delete: false });
+                return;
+            }
+            let { delete: deleted, _ } = await this.userService.delete(userToDelete.id);
+            if (!deleted) {
+                res.status(401).json({ delete: false });
+                return;
+            }
+            res.status(200).json({ delete: true });
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({
+                error: "Internal Server Error - 843ae2ed-8c42-46d5-86fe-0ad99738f71e",
             });
         }
     }
